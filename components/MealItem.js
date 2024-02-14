@@ -17,7 +17,6 @@ function MealItem({ title, imageUrl, duration, complexity, affordability, steps,
         navigation.navigate('MealsDetail', {
             steps, ingredients
         })
-        
     }
 
   return (
