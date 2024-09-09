@@ -1,9 +1,17 @@
 import { View, Text, Pressable, Image, StyleSheet, Platform } from "react-native";
-
 import { useNavigation } from "@react-navigation/native";
-import { CATEGORIES, MEALS } from "../data/dummy-data";
 
-function MealItem({ title, imageUrl, duration, complexity, affordability, steps, ingredients }) {
+type Props = {
+    title: string;
+    imageUrl: string;
+    duration: number;
+    complexity: string;
+    affordability: string;
+    steps: string;
+    ingredients: string;
+};
+
+function MealItem({ title, imageUrl, duration, complexity, affordability, steps, ingredients }: Props) {
     const navigation = useNavigation();
 
     // const displayedMeals = MEALS.filter((mealItem) => {
@@ -11,20 +19,20 @@ function MealItem({ title, imageUrl, duration, complexity, affordability, steps,
     // });
     console.log('steps in mealitem:', steps)
     console.log('ingre in mealitem:', ingredients)
-    // const steps = steps
 
-    function pressHandler() {
-        navigation.navigate('MealsDetail', {
-            steps, ingredients
-        })
-    }
+    // function pressHandler() {
+    //   navigation.navigate('MealsDetail', {
+    //     steps: steps,
+    //     ingredients
+    //   })
+    // }
 
   return (
     <View style={styles.mealItem}>
       <Pressable 
         android_ripple={{ color:'#ccc' }} 
         style={({ pressed }) => pressed ? styles.buttonPressed : null}
-        onPress={pressHandler}
+        // onPress={pressHandler}
       >
         <View style={styles.innerContainer}>
           <Image style={styles.image} source={{ uri:imageUrl }} />

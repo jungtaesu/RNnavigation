@@ -1,30 +1,37 @@
 import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
 import { MEALS, CATEGORIES } from "../data/dummy-data";
-import { useRoute, useNavigation } from '@react-navigation/native';
+import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import MealItem from "../components/MealItem";
 import { useEffect, useLayoutEffect } from "react";
 
+type ParamList = {
+    MealsOverviewScreenType: {
+      categoryId:string
+    };
+  };
+
 function MealsOverviewScreen() {
     
-    const route = useRoute();
     const navigation = useNavigation();
-    console.log('route.params:', route.params)
-    const catId = route.params.categoryId;
+    
+    const { params } = useRoute<RouteProp<ParamList, 'MealsOverviewScreenType'>>();
+    console.log('params in mealsoverview:', params)
+    // const catId = params.categoryId;
 
     const displayedMeals = MEALS.filter((mealItem) => {
-        return mealItem.categoryIds.indexOf(catId) >= 0;
+        // return mealItem.categoryIds.indexOf(catId) >= 0;
     });
 
-    useLayoutEffect(() => {
-        const categoryTitle = CATEGORIES.find((category) => category.id === catId).title;
+    // useLayoutEffect(() => {
+    //     const categoryTitle = CATEGORIES && CATEGORIES.find((category) => category.id === catId).title;
 
-        navigation.setOptions({
-            title: categoryTitle
-        })
-    }, [catId, navigation])
+    //     navigation.setOptions({
+    //         title: categoryTitle
+    //     })
+    // }, [catId, navigation])
 
 
-    function renderMealItem(itemData) {
+    function renderMealItem(itemData:any) {
         const item = itemData.item
         console.log('item:', item.steps)
         const mealItemProps = {
