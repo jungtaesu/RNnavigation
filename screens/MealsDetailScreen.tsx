@@ -18,7 +18,7 @@ function MealsDetailScreen() {
     console.log('route.params in mealdetailscreen:', router.params)
 
     function handleHeaderButton() {
-        console.log('header clicked!!!')
+        console.log('header clicked!!1!')
     }
 
     useLayoutEffect(() => {
